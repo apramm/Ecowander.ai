@@ -8,6 +8,7 @@ import {
 } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
+import LandingPage from './pages/LandingPage';
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
@@ -36,7 +37,9 @@ function App() {
               align="start"
               bg={'red'}
             >
-              <Carousel.Slide>Page 1</Carousel.Slide>
+              <Carousel.Slide>
+                <LandingPage />
+              </Carousel.Slide>
               <Carousel.Slide>Page 2</Carousel.Slide>
               <Carousel.Slide>Page 3</Carousel.Slide>
             </Carousel>
