@@ -18,13 +18,31 @@ const steps = [
   { id: 3, content: 'Step 3', component: <LandingPage /> },
 ];
 
+interface FormData {
+  startLocation: string; // e.g. "Paris, France" (city, country)
+  endLocation: string; // e.g. "New York, United States" (city, country)
+  startDate: string; // e.g. 2024-02-27
+  endDate: string;
+  budgetInDollars: number; // e.g. 3323233
+  numberOfPeople: number;
+  scheduleGranularity: number; // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
+  mustSeeAttractions: string[];
+  additionalInfo: string;
+}
+
 function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [opened, { toggle }] = useDisclosure();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+  const [formData, setFormData] = useState<FormData>({
+    startLocation: '',
+    endLocation: '', // e.g. "New York, United States" (city, country)
+    startDate: '', // e.g. 2024-02-27
+    endDate: '',
+    budgetInDollars: 0, // e.g. 3323233
+    numberOfPeople: 0,
+    scheduleGranularity: 0, // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
+    mustSeeAttractions: [],
+    additionalInfo: '',
   });
 
   const handleNext = () => {
