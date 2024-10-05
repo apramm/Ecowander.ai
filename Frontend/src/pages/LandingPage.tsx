@@ -97,7 +97,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ formData, setFormData }) => {
         />
       </Box>
 
-      <Button fullWidth mt="md">
+      <Button color="#6E9266" fullWidth mt="md">
         Plan Your Trip
       </Button>
     </Container>

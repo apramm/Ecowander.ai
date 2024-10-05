@@ -146,12 +146,13 @@ function App() {
                   Back
                 </Button>
                 <Button
+                  color="#6E9266"
                   onClick={handleNext}
                   disabled={currentStep === steps.length - 1}
                 >
                   Next
                 </Button>
-                <Button onClick={handleSubmit}>Submit</Button>
+                <Button color="#6E9266" onClick={handleSubmit}>Submit</Button>
               </Group>
             </Center>
           </Container>
