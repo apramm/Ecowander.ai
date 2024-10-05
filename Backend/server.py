@@ -43,7 +43,7 @@ def generate_trip():
         start_date = user_input.get('startDate', '2024-01-22')
         end_date = user_input.get('endDate', '2024-02-01')
         budget = user_input.get('budgetInDollars', 1500)
-        number_of_people = user_input.get('numberOfPeople', 4)
+        number_of_people = user_input.get('numberOfPeople', 1)
         schedule_granularity = user_input.get('scheduleGranularity', 4)
         must_see_attractions = user_input.get(
             'mustSeeAttractions', 'CNN Tower')

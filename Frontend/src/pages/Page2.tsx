@@ -21,7 +21,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
     const value = parseInt(event.currentTarget.value, 10);
     setFormData(prevFormData => ({
       ...prevFormData,
-      numberOfPeople: isNaN(value) ? 1 : value, // Default to 1 if not a valid number
+      numberOfPeople: isNaN(value) ? 0 : value, // Default to 1 if not a valid number
     }));
   };
 
