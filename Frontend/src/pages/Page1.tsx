@@ -43,9 +43,9 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
       mt="md"
       p="xl"
       style={{
-        border: '1px solid #eaecef',
+        border: '1px solid #eef6ef',
         borderRadius: '8px',
-        backgroundColor: '#e3f2fd', // Light blue background
+        backgroundColor: '#eef6ef',
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', // Soft shadow for depth
       }}
     >
@@ -55,7 +55,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
 
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Box>
-          <Text mb="xs" color="#1976d2">
+          <Text mb="xs" color="#6E9266">
             Start Date
           </Text>
           <DatePicker
@@ -67,7 +67,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         </Box>
 
         <Box>
-          <Text mb="xs" color="#1976d2">
+          <Text mb="xs" color="#6E9266">
             End Date
           </Text>
           <DatePicker
@@ -79,7 +79,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         </Box>
 
         <Box>
-          <Text mb="xs" color="#1976d2">
+          <Text mb="xs" color="#6E9266">
             Start Date
           </Text>
           <Select
