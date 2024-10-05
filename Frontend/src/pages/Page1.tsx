@@ -1,5 +1,5 @@
 import { Box, Title, Text, Select } from '@mantine/core';
-import { DatePicker } from '@mantine/dates';
+import { DateInput } from '@mantine/dates';
 import { FormData } from '../App';
 
 interface DateSelectorProps {
@@ -58,7 +58,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
           <Text mb="xs" c="#1976d2">
             Start Date
           </Text>
-          <DatePicker
+          <DateInput
             value={formData.startDate ? new Date(formData.startDate) : null}
             onChange={handleStartDateChange}
             mb="md"
@@ -70,7 +70,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
           <Text mb="xs" c="#1976d2">
             End Date
           </Text>
-          <DatePicker
+          <DateInput
             value={formData.endDate ? new Date(formData.endDate) : null}
             onChange={handleEndDateChange}
             mb="lg"
