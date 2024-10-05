@@ -156,6 +156,7 @@ function App() {
                 </Button>
                 {currentStep < 3 ? (
                   <Button
+                    color="#6E9266"
                     onClick={handleNext}
                     disabled={currentStep === steps.length - 1}
                   >
