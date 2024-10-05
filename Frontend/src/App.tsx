@@ -95,6 +95,8 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    setLlmResponse('');
+    handleNext();
     try {
       const response = await axios.post(
         'http://127.0.0.1:5000/generate-trip',
@@ -152,13 +154,16 @@ function App() {
                 >
                   Back
                 </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={currentStep === steps.length - 1}
-                >
-                  Next
-                </Button>
-                <Button onClick={handleSubmit}>Submit</Button>
+                {currentStep < 3 ? (
+                  <Button
+                    onClick={handleNext}
+                    disabled={currentStep === steps.length - 1}
+                  >
+                    Next
+                  </Button>
+                ) : currentStep === 3 ? (
+                  <Button onClick={handleSubmit}>Submit</Button>
+                ) : null}
               </Group>
             </Center>
           </Container>
