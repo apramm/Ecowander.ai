@@ -1,4 +1,4 @@
-import { AppShell, Burger } from '@mantine/core';
+import { AppShell, Burger, Group, Skeleton, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 function App() {
@@ -16,13 +16,25 @@ function App() {
         padding="md"
       >
         <AppShell.Header>
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <div>Logo</div>
+          <Group h="100%" px="md">
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <Text size="xl">Ecowander.ai</Text>
+          </Group>
         </AppShell.Header>
-
-        <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
-
-        <AppShell.Main>Main</AppShell.Main>
+        <AppShell.Navbar p="md">
+          Navbar
+          {Array(15)
+            .fill(0)
+            .map((_, index) => (
+              <Skeleton key={index} h={28} mt="sm" animate={false} />
+            ))}
+        </AppShell.Navbar>
+        <AppShell.Main>Form</AppShell.Main>
       </AppShell>
     </>
   );
