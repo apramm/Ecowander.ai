@@ -38,8 +38,8 @@ function App() {
     endLocation: ',', // e.g. "New York,United States" (city, country)
     startDate: '', // e.g. 2024-02-27
     endDate: '',
-    budgetInDollars: 0, // e.g. 3323233
-    numberOfPeople: 0,
+    budgetInDollars: 1, // e.g. 3323233
+    numberOfPeople: 1,
     scheduleGranularity: 0, // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
     mustSeeAttractions: [],
     additionalInfo: '',
@@ -95,6 +95,8 @@ function App() {
   };
 
   const handleSubmit = async () => {
+    setLlmResponse('');
+    handleNext();
     try {
       const response = await axios.post(
         'http://127.0.0.1:5000/generate-trip',
@@ -152,14 +154,16 @@ function App() {
                 >
                   Back
                 </Button>
-                <Button
-                  color="#6E9266"
-                  onClick={handleNext}
-                  disabled={currentStep === steps.length - 1}
-                >
-                  Next
-                </Button>
-                <Button color="#6E9266" onClick={handleSubmit}>Submit</Button>
+                {currentStep < 3 ? (
+                  <Button
+                    onClick={handleNext}
+                    disabled={currentStep === steps.length - 1}
+                  >
+                    Next
+                  </Button>
+                ) : currentStep === 3 ? (
+                  <Button onClick={handleSubmit}>Submit</Button>
+                ) : null}
               </Group>
             </Center>
           </Container>

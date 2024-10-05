@@ -11,7 +11,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
     const value = parseInt(event.currentTarget.value, 10);
     setFormData(prevFormData => ({
       ...prevFormData,
-      budgetInDollars: isNaN(value) ? 0 : value, // Default to 0 if not a valid number
+      budgetInDollars: isNaN(value) ? 1 : value, // Default to 1 if not a valid number
     }));
   };
 
@@ -21,7 +21,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
     const value = parseInt(event.currentTarget.value, 10);
     setFormData(prevFormData => ({
       ...prevFormData,
-      numberOfPeople: isNaN(value) ? 0 : value, // Default to 1 if not a valid number
+      numberOfPeople: isNaN(value) ? 1 : value, // Default to 1 if not a valid number
     }));
   };
 
@@ -44,7 +44,11 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         Logistics
       </Title>
 
+<<<<<<< HEAD
       <Text mb="xs" color="#6E9266">
+=======
+      <Text mb="xs" c="#1976d2">
+>>>>>>> 5c1f7d63bd1ce678d01bd82dd3e973e95dd801a4
         Budget (in dollars)
       </Text>
       <TextInput
@@ -56,7 +60,11 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
       />
 
+<<<<<<< HEAD
       <Text mb="xs" color="#6E9266">
+=======
+      <Text mb="xs" c="#1976d2">
+>>>>>>> 5c1f7d63bd1ce678d01bd82dd3e973e95dd801a4
         Number of People
       </Text>
       <TextInput
