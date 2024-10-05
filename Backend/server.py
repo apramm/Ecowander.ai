@@ -46,7 +46,7 @@ def generate_trip():
         number_of_people = user_input.get('numberOfPeople', 4)
         schedule_granularity = user_input.get('scheduleGranularity', 4)
         must_see_attractions = user_input.get(
-            'mustSeeAttractions', ['CNN Tower', 'Cafe'])
+            'mustSeeAttractions', 'CNN Tower')
         additional_info = user_input.get(
             'additionalInfo', 'Additional information here')
 
@@ -122,16 +122,18 @@ def generate_trip():
         markdown_content = f"# Trip Plan\n\n{generated_response}"
 
         # Convert Markdown to HTML
-        html_content = markdown.markdown(markdown_content)
+        # html_content = markdown.markdown(markdown_content)
 
-        # Convert HTML to PDF using pdfkit
-        pdf = pdfkit.from_string(html_content, False)
+        # # Convert HTML to PDF using pdfkit
+        # pdf = pdfkit.from_string(html_content, False)
 
-        # Create a BytesIO stream to hold the PDF data
-        pdf_stream = BytesIO(pdf)
+        # # Create a BytesIO stream to hold the PDF data
+        # pdf_stream = BytesIO(pdf)
 
-        # Send the PDF file as the response
-        return send_file(pdf_stream, as_attachment=True, download_name='trip_plan.pdf', mimetype='application/pdf')
+        # # Send the PDF file as the response
+        # return send_file(pdf_stream, as_attachment=True, download_name='trip_plan.pdf', mimetype='application/pdf')
+        
+        return jsonify({"response": markdown_content})
 
     except ClientError as e:
         return jsonify({"error": f"ClientError: Unable to invoke model {model_id}. Reason: {e}"}), 500
