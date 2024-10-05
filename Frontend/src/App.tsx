@@ -12,6 +12,7 @@ import Page1 from './pages/Page1';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
+import axios from 'axios';
 
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
@@ -74,6 +75,18 @@ function App() {
     exit: { opacity: 0, x: -100 },
   };
 
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/generate-trip',
+        formData
+      );
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <>
       <AppShell header={{ height: 60 }} padding="md">
@@ -116,6 +129,7 @@ function App() {
                 >
                   Next
                 </Button>
+                <Button onClick={handleSubmit}>Submit</Button>
               </Group>
             </Center>
           </Container>
