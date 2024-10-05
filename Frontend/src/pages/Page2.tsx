@@ -47,6 +47,8 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         Budget (in dollars)
       </Text>
       <TextInput
+        required
+        label="Enter Budget"
         type="number"
         placeholder="Enter your budget"
         value={formData.budgetInDollars.toString()} // Convert number to string for input
@@ -58,6 +60,8 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         Number of People
       </Text>
       <TextInput
+        required
+        label="Party Size"
         type="number"
         placeholder="Enter number of people"
         value={formData.numberOfPeople.toString()} // Convert number to string for input

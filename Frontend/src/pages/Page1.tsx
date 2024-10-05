@@ -59,6 +59,8 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
             Start Date
           </Text>
           <DateInput
+            required
+            label="Choose Start Date"
             value={formData.startDate ? new Date(formData.startDate) : null}
             onChange={handleStartDateChange}
             mb="md"
@@ -67,11 +69,12 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         </Box>
 
         <Box>
-
           <Text mb="xs" color="#6E9266">
             End Date
           </Text>
           <DateInput
+            required
+            label="Choose End Date"
             value={formData.endDate ? new Date(formData.endDate) : null}
             onChange={handleEndDateChange}
             mb="lg"
@@ -84,6 +87,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
             Start Date
           </Text>
           <Select
+            required
             label="Select Schedule Granularity"
             placeholder="Choose granularity"
             data={granularityOptions}
