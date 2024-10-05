@@ -1,13 +1,13 @@
 import {
   AppShell,
   Burger,
-  Center,
   Container,
   Group,
   Text,
 } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
+
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
