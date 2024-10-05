@@ -7,8 +7,10 @@ from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 from botocore.exceptions import ClientError
 
-# Create a Bedrock Runtime client.
-client = boto3.client("bedrock-runtime", region_name="us-west-2")
+client = boto3.client(
+    service_name="bedrock-runtime",
+    region_name="us-west-2"
+)
 
 # Set the model ID
 model_id = "us.meta.llama3-2-90b-instruct-v1:0"
@@ -31,8 +33,34 @@ def generate_trip():
         must_see_attractions = user_input.get('mustSeeAttractions', ['CNN Tower', 'Cafe'])
         additional_info = user_input.get('additionalInfo', 'Additional information here')
 
-        # Format the prompt for the LLM
-        prompt = (
+
+        # Define the system prompt with instructions for the model.
+        system_prompt = """
+        You are an intelligent assistant that provides eco-friendly and sustainable travel recommendations. 
+        In a concise format, offer travel plans that minimize environmental impact while staying within the user's budget, 
+        using sustainable practices such as choosing eco-friendly transportation, accommodation, and activities.
+        """
+
+        # Using CoT few-shot prompting. This is the Chain-of-Thought Example (between system and user prompts).
+        example_prompt = """
+        <|start_example|>
+        <|start_header_id|>For example, say that a user says:<|end_header_id|>
+        I want to plan a 1-day trip from Los Angeles to Santa Barbara for two people. 
+        I have a budget of $1000 and want to minimize my environmental impact. 
+        What can you recommend for transportation, food, and activities?
+        <|eot_id|>
+        <|start_header_id|>Then the example output would be:<|end_header_id|>
+        Hey, it's great that you're trying to be eco-friendly throughout your trip!
+        For a 1-day eco-friendly trip from Los Angeles to Santa Barbara, consider the following:
+        1. Transportation: Rent an electric vehicle or take a bus (e.g., FlixBus) to reduce emissions. The round trip will take around 2 hours. Cost: approx. $30.
+        2. Food: Try farm-to-table restaurants such as The Lark, which prioritizes locally sourced ingredients. Average meal price for two: $100.
+        3. Activities: Visit the Santa Barbara Botanical Garden (entry $15), or enjoy a guided kayaking tour for an eco-friendly experience. Total cost for activities: $50.
+        Total budget spent: $195, leaving ample room for other expenses. Enjoy your trip!
+        <|eot_id|>
+        <|end_example|>
+        """
+
+        user_prompt = (
             f"Suggest a sustainable trip plan from {start_location} to {end_location} "
             f"from {start_date} to {end_date} on a budget of {budget} dollars. "
             f"There are {number_of_people} people traveling. Please provide the schedule in intervals of "
@@ -40,10 +68,15 @@ def generate_trip():
             f"Additional information: {additional_info}."
         )
 
-        # Format the prompt to fit the model's instruction format
+
+        # Combine system, example, and user prompts.
         formatted_prompt = f"""
-        <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-        {prompt}
+        <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+        {system_prompt}
+        <|eot_id|>
+        {example_prompt}
+        <|start_header_id|>user<|end_header_id|>
+        {user_prompt}
         <|eot_id|>
         <|start_header_id|>assistant<|end_header_id|>
         """
@@ -92,102 +125,4 @@ def generate_trip():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-# import boto3
-# import json
-# from flask import Flask, request, jsonify
-# from flask_cors import CORS
-
-# from botocore.exceptions import ClientError
-
-# # Create a Bedrock Runtime client.
-# client = boto3.client("bedrock-runtime", region_name="us-west-2")
-
-# # Set the model ID
-# model_id = "us.meta.llama3-2-90b-instruct-v1:0"
-
-# app = Flask(__name__)
-# CORS(app)  # Enable CORS to allow requests from the frontend
-
-
-# @app.route('/generate-trip', methods=['POST'])
-# def generate_trip():
-#     try:
-#         # Get the user's input from the request body
-#         user_input = request.json
-#         start_location = user_input.get('startLocation', 'Seattle')
-#         end_location = user_input.get('endLocation', 'Vancouver')
-#         start_date = user_input.get('startDate', '2024-01-22')
-#         end_date = user_input.get('endDate', '2024-02-01')
-#         budget = user_input.get('budgetInDollars', 1500)
-#         numberOfPeople = user_input.get('numberOfPeople', 4)
-#         scheduleGranularity = user_input.get('scheduleGranularity', 4)
-#         mustSeeAttractions = user_input.get('mustSeeAttractions', ['CNN Tower', 'Cafe'])
-#         additionalInfo = user_input.get('additionalInfo', 'Additional information here')
-
-
-#         # Format the prompt for the LLM
-#         prompt = f"Suggest a sustainable trip plan from {start_location} to {end_location} from {start_date} to {end_date} on a budget of {budget} dollars. 
-#         There are {numberOfPeople} travelling. Please give the schedule in interval of {scheduleGranularity} hour(s). 
-#         In the itinerary please include these attractions: {mustSeeAttractions}.
-#         Here is some additional information to consider for the itinerary: {additionalInfo}."
-#         formatted_prompt = f"""
-#         <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-#         {prompt}
-#         <|eot_id|>
-#         <|start_header_id|>assistant<|end_header_id|>
-#         """
-
-#         # Create the request payload using the model's structure.
-#         native_request = {
-#             "prompt": formatted_prompt,
-#             "max_gen_len": 512,
-#             "temperature": 0.5,
-#         }
-
-#         # Convert the request to JSON.
-#         request_body = json.dumps(native_request)
-
-
-# # # Define the prompt for the model.
-# # prompt = f"Suggest a sustainable trip plan from {start_location} to {end_location} for {days} day(s) in a car, budget = ${budget}."
-# # prompt = "Suggest a sustainable trip plan from Seattle to Vancouver for 1 day in a car, budget = $5000."
-
-# # # Embed the prompt in Llama 3's instruction format.
-# # formatted_prompt = f"""
-# # <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-# # {prompt}
-# # <|eot_id|>
-# # <|start_header_id|>assistant<|end_header_id|>
-# # """
-
-# # # he request payload using the model's structure.
-# # native_request = {
-# #     "prompt": formatted_prompt,
-# #     "max_gen_len": 512,
-# #     "temperature": 0.5,
-# # }
-
-# # # Convert the request to JSON.
-# # request = json.dumps(native_request)
-
-
-
-
-# try:
-#     streaming_response = client.invoke_model_with_response_stream(
-#         modelId=model_id, body=request
-#     )
-
-#     for event in streaming_response["body"]:
-#         chunk = json.loads(event["chunk"]["bytes"])
-#         if "generation" in chunk:
-#             print(chunk["generation"], end="")
-
-# except (ClientError, Exception) as e:
-#     print(f"ERROR: Can't invoke '{model_id}'. Reason: {e}")
-#     exit(1)
-
 
