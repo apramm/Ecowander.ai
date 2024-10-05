@@ -43,12 +43,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
       >
         Logistics
       </Title>
-
-<<<<<<< HEAD
       <Text mb="xs" color="#6E9266">
-=======
-      <Text mb="xs" c="#1976d2">
->>>>>>> 5c1f7d63bd1ce678d01bd82dd3e973e95dd801a4
         Budget (in dollars)
       </Text>
       <TextInput
@@ -59,12 +54,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         mb="md"
         style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
       />
-
-<<<<<<< HEAD
       <Text mb="xs" color="#6E9266">
-=======
-      <Text mb="xs" c="#1976d2">
->>>>>>> 5c1f7d63bd1ce678d01bd82dd3e973e95dd801a4
         Number of People
       </Text>
       <TextInput
