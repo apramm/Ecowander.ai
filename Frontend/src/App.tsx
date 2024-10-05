@@ -6,11 +6,13 @@ import {
   Container,
   Group,
   Text,
+  Image,
 } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
+import logo from '../images/logo.png';
 
 const steps = [
   { id: 1, content: 'Step 1', component: <LandingPage /> },
@@ -65,7 +67,7 @@ function App() {
 
   return (
     <>
-      <AppShell header={{ height: 60 }} padding="md">
+      <AppShell header={{ height: 80 }} padding="md">
         <AppShell.Header>
           <Group h="100%" px="md">
             <Burger
@@ -74,7 +76,17 @@ function App() {
               hiddenFrom="sm"
               size="sm"
             />
-            <Text size="xl">Ecowander.ai</Text>
+            <Image
+              src={logo}
+              alt="Ecowander Logo"
+              width={400}
+              height={200}
+              style={{
+                objectFit: 'contain',
+                marginTop: '-4rem', 
+                marginLeft: '2rem'
+              }}
+            />
           </Group>
         </AppShell.Header>
         <AppShell.Main>
