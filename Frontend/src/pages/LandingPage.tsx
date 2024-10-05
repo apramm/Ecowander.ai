@@ -268,9 +268,7 @@ const LandingPage = () => {
 
   return (
     <Container size="sm" mt="xl">
-      <Title order={2} align="center">
-        Welcome to the Travel Planner
-      </Title>
+      <Title order={2}>Welcome to the Travel Planner</Title>
 
       <Box mt="md">
         <Title order={4}>Starting Location</Title>
