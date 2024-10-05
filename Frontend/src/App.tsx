@@ -6,6 +6,7 @@ import {
   Container,
   Group,
   Text,
+  Image,
 } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
 import Page1 from './pages/Page1';
@@ -13,6 +14,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 import axios from 'axios';
+import logo from '../images/logo.png';
 
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
@@ -89,7 +91,7 @@ function App() {
 
   return (
     <>
-      <AppShell header={{ height: 60 }} padding="md">
+      <AppShell header={{ height: 80 }} padding="md">
         <AppShell.Header>
           <Group h="100%" px="md">
             <Burger
@@ -98,7 +100,17 @@ function App() {
               hiddenFrom="sm"
               size="sm"
             />
-            <Text size="xl">Ecowander.ai</Text>
+            <Image
+              src={logo}
+              alt="Ecowander Logo"
+              width={400}
+              height={200}
+              style={{
+                objectFit: 'contain',
+                marginTop: '-4rem',
+                marginLeft: '2rem',
+              }}
+            />
           </Group>
         </AppShell.Header>
         <AppShell.Main>
