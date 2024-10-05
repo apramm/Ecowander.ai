@@ -12,13 +12,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 
-const steps = [
-  { id: 1, content: 'Step 1', component: <LandingPage /> },
-  { id: 2, content: 'Step 2', component: <LandingPage /> },
-  { id: 3, content: 'Step 3', component: <LandingPage /> },
-];
-
-interface FormData {
+export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
   endLocation: string; // e.g. "New York, United States" (city, country)
   startDate: string; // e.g. 2024-02-27
@@ -34,8 +28,8 @@ function App() {
   const [currentStep, setCurrentStep] = useState(0);
   const [opened, { toggle }] = useDisclosure();
   const [formData, setFormData] = useState<FormData>({
-    startLocation: '',
-    endLocation: '', // e.g. "New York, United States" (city, country)
+    startLocation: ',',
+    endLocation: ',', // e.g. "New York,United States" (city, country)
     startDate: '', // e.g. 2024-02-27
     endDate: '',
     budgetInDollars: 0, // e.g. 3323233
@@ -44,6 +38,18 @@ function App() {
     mustSeeAttractions: [],
     additionalInfo: '',
   });
+
+  const steps = [
+    {
+      id: 1,
+      content: 'Step 1',
+      component: <LandingPage formData={formData} setFormData={setFormData} />,
+    },
+    { id: 2, content: 'Step 2', component: <Text>Empty</Text> },
+    { id: 3, content: 'Step 3', component: <Text>Empty</Text> },
+  ];
+
+  console.log(formData);
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {

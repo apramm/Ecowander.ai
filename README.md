@@ -6,7 +6,7 @@ CIC Hackathon Git Repo - Eco-Friendly Travel Planner
 In the Frontend folder, do the following commands in order:
 ```
 npm install
-cd Frontend/src
+cd src
 npm run dev
 ```
 
