@@ -1,12 +1,4 @@
-import {
-  AppShell,
-  Burger,
-  Button,
-  Center,
-  Container,
-  Group,
-  Image,
-} from '@mantine/core';
+import { AppShell, Burger, Button, Center, Group, Image } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
 import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
@@ -46,11 +38,29 @@ function App() {
   });
   const [llmResponse, setLlmResponse] = useState<string | null>(null);
 
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(prev => prev + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(prev => prev - 1);
+    }
+  };
+
   const steps = [
     {
       id: 1,
       content: 'Step 1',
-      component: <LandingPage formData={formData} setFormData={setFormData} />,
+      component: (
+        <LandingPage
+          formData={formData}
+          setFormData={setFormData}
+          onNext={handleNext}
+        />
+      ),
     },
     {
       id: 2,
@@ -75,18 +85,6 @@ function App() {
   ];
 
   console.log(formData);
-
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(prev => prev + 1);
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
-    }
-  };
 
   const variants = {
     hidden: { opacity: 0, x: 100 },
@@ -133,20 +131,20 @@ function App() {
           </Group>
         </AppShell.Header>
         <AppShell.Main>
-          <Container size="md">
-            <motion.div
-              key={currentStep}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              variants={variants}
-              transition={{ duration: 0.5 }}
-            >
-              {steps[currentStep].component}
-            </motion.div>
+          <motion.div
+            key={currentStep}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={variants}
+            transition={{ duration: 0.5 }}
+          >
+            {steps[currentStep].component}
+          </motion.div>
 
-            <Center mt="md">
-              <Group>
+          <Center mt="md">
+            <Group>
+              {currentStep != 0 ? (
                 <Button
                   variant="default"
                   onClick={handleBack}
@@ -154,19 +152,20 @@ function App() {
                 >
                   Back
                 </Button>
-                {currentStep < 3 ? (
-                  <Button
-                    onClick={handleNext}
-                    disabled={currentStep === steps.length - 1}
-                  >
-                    Next
-                  </Button>
-                ) : currentStep === 3 ? (
-                  <Button onClick={handleSubmit}>Submit</Button>
-                ) : null}
-              </Group>
-            </Center>
-          </Container>
+              ) : null}
+
+              {currentStep < 3 && currentStep > 0 ? (
+                <Button
+                  onClick={handleNext}
+                  disabled={currentStep === steps.length - 1}
+                >
+                  Next
+                </Button>
+              ) : currentStep === 3 ? (
+                <Button onClick={handleSubmit}>Submit</Button>
+              ) : null}
+            </Group>
+          </Center>
         </AppShell.Main>
       </AppShell>
     </>
