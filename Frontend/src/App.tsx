@@ -65,15 +65,12 @@ function App() {
     {
       id: 4,
       content: 'Step 4',
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
       component: <Page3 formData={formData} setFormData={setFormData} />,
-=======
+    },
+    {
+      id: 5,
+      content: 'Step 5',
       component: <ResponsePage llmResponse={llmResponse} />,
->>>>>>> Stashed changes
-=======
-      component: <ResponsePage llmResponse={llmResponse} />,
->>>>>>> Stashed changes
     },
   ];
 
