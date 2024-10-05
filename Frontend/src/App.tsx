@@ -10,11 +10,13 @@ import {
 } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
 import Page1 from './pages/Page1';
+import Page2 from './pages/Page2';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 import axios from 'axios';
 import logo from '../images/logo.png';
+import { form } from 'framer-motion/client';
 
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
@@ -54,7 +56,11 @@ function App() {
       content: 'Step 2',
       component: <Page1 formData={formData} setFormData={setFormData} />,
     },
-    { id: 3, content: 'Step 3', component: <Text>Empty</Text> },
+    {
+      id: 3,
+      content: 'Step 3',
+      component: <Page2 formData={formData} setFormData={setFormData} />,
+    },
   ];
 
   console.log(formData);
