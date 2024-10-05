@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   Box,
   Select,
@@ -8,20 +7,20 @@ import {
   Button,
   Divider,
 } from '@mantine/core';
-import { countries } from './countries';
+import { countries } from './Countries.tsx';
+import { FormData } from '../App';
 
 const countryOptions = countries.map(country => ({
   value: country,
   label: country,
 }));
 
-const LandingPage = () => {
-  const [selectedCountry1, setSelectedCountry1] = useState<string | null>(null);
-  const [city1, setCity1] = useState<string>('');
+interface LandingPageProps {
+  formData: FormData;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+}
 
-  const [selectedCountry2, setSelectedCountry2] = useState<string | null>(null);
-  const [city2, setCity2] = useState<string>('');
-
+const LandingPage: React.FC<LandingPageProps> = ({ formData, setFormData }) => {
   return (
     <Container size="sm" mt="xl">
       <Title order={2}>Welcome to the Travel Planner</Title>
@@ -32,16 +31,32 @@ const LandingPage = () => {
           label="Select Starting Country"
           placeholder="Choose a country"
           data={countryOptions}
-          value={selectedCountry1}
-          onChange={setSelectedCountry1}
+          value={formData.startLocation.split(',')[0]}
+          onChange={value =>
+            setFormData(prevFormData => {
+              const prevCity = prevFormData.startLocation.split(',')[1];
+              return {
+                ...prevFormData,
+                startLocation: `${value},${prevCity}`,
+              };
+            })
+          }
           mb="md" // Adds margin to the bottom
         />
 
         <TextInput
           label="Enter Starting City"
           placeholder="Type your city"
-          value={city1}
-          onChange={event => setCity1(event.currentTarget.value)}
+          value={formData.startLocation.split(',')[1]}
+          onChange={event =>
+            setFormData(prevFormData => {
+              const prevCountry = prevFormData.startLocation.split(',')[0];
+              return {
+                ...prevFormData,
+                startLocation: `${prevCountry},${event.currentTarget.value}`,
+              };
+            })
+          }
           mb="lg" // Adds margin to the bottom for spacing
         />
 
@@ -52,16 +67,32 @@ const LandingPage = () => {
           label="Select Destination Country"
           placeholder="Choose a country"
           data={countryOptions}
-          value={selectedCountry2}
-          onChange={setSelectedCountry2}
+          value={formData.endLocation.split(',')[1]}
+          onChange={value =>
+            setFormData(prevFormData => {
+              const prevCity = prevFormData.endLocation.split(',')[0];
+              return {
+                ...prevFormData,
+                endLocation: `${prevCity},${value}`,
+              };
+            })
+          }
           mb="md"
         />
 
         <TextInput
           label="Enter Destination City"
           placeholder="Type your city"
-          value={city2}
-          onChange={event => setCity2(event.currentTarget.value)}
+          value={formData.endLocation.split(',')[0]}
+          onChange={event =>
+            setFormData(prevFormData => {
+              const prevCountry = prevFormData.endLocation.split(',')[1];
+              return {
+                ...prevFormData,
+                endLocation: `${event.currentTarget.value},${prevCountry}`,
+              };
+            })
+          }
           mb="lg"
         />
       </Box>
