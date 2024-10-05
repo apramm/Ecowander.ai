@@ -1,7 +1,6 @@
 import {
   AppShell,
   Burger,
-  Center,
   Container,
   Group,
   Text,
@@ -9,6 +8,7 @@ import {
 import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
 import LandingPage from './pages/LandingPage';
+
 
 function App() {
   const [opened, { toggle }] = useDisclosure();
