@@ -8,6 +8,7 @@ import {
   Text,
 } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
+import Page1 from './pages/Page1';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
@@ -15,8 +16,8 @@ import { useDisclosure } from '@mantine/hooks';
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
   endLocation: string; // e.g. "New York, United States" (city, country)
-  startDate: string; // e.g. 2024-02-27
-  endDate: string;
+  startDate: string | null; // e.g. 2024-02-27
+  endDate: string | null;
   budgetInDollars: number; // e.g. 3323233
   numberOfPeople: number;
   scheduleGranularity: number; // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
@@ -45,7 +46,11 @@ function App() {
       content: 'Step 1',
       component: <LandingPage formData={formData} setFormData={setFormData} />,
     },
-    { id: 2, content: 'Step 2', component: <Text>Empty</Text> },
+    {
+      id: 2,
+      content: 'Step 2',
+      component: <Page1 formData={formData} setFormData={setFormData} />,
+    },
     { id: 3, content: 'Step 3', component: <Text>Empty</Text> },
   ];
 
