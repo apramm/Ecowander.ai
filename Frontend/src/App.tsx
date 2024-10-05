@@ -5,7 +5,6 @@ import {
   Center,
   Container,
   Group,
-  Text,
   Image,
 } from '@mantine/core';
 import LandingPage from './pages/LandingPage';
@@ -16,7 +15,6 @@ import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 import axios from 'axios';
 import logo from '../images/logo.png';
-import { form } from 'framer-motion/client';
 
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
