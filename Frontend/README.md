@@ -8,7 +8,7 @@
   "budgetInDollars": integer, // e.g. 3323233
   "numberOfPeople": integer,
   "scheduleGranularity": integer, // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
-  "mustSeeAttractions": string,
+  "mustSeeAttractions": string[],
   "additionalInfo": string,
 }
 ```
