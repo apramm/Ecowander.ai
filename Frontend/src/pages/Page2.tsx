@@ -11,7 +11,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
     const value = parseInt(event.currentTarget.value, 10);
     setFormData(prevFormData => ({
       ...prevFormData,
-      budgetInDollars: isNaN(value) ? 1 : value, // Default to 1 if not a valid number
+      budgetInDollars: isNaN(value) ? 0 : value,
     }));
   };
 
@@ -21,7 +21,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
     const value = parseInt(event.currentTarget.value, 10);
     setFormData(prevFormData => ({
       ...prevFormData,
-      numberOfPeople: isNaN(value) ? 1 : value, // Default to 1 if not a valid number
+      numberOfPeople: isNaN(value) ? 0 : value,
     }));
   };
 
@@ -47,6 +47,8 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         Budget (in dollars)
       </Text>
       <TextInput
+        required
+        label="Enter Budget"
         type="number"
         placeholder="Enter your budget"
         value={formData.budgetInDollars.toString()} // Convert number to string for input
@@ -58,6 +60,8 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         Number of People
       </Text>
       <TextInput
+        required
+        label="Party Size"
         type="number"
         placeholder="Enter number of people"
         value={formData.numberOfPeople.toString()} // Convert number to string for input
