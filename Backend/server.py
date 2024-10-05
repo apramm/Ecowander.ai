@@ -18,6 +18,21 @@ model_id = "us.meta.llama3-2-90b-instruct-v1:0"
 app = Flask(__name__)
 CORS(app)  # Enable CORS to allow requests from the frontend
 
+@app.route('/', methods=['GET'])
+def hello():
+    return "Hello!"
+
+@app.route('/', methods=['POST'])
+def receive_data():
+    # Access the JSON data from the request
+    request_data = request.json
+
+    # Respond with a basic JSON response
+    return jsonify({
+        'message': 'Data received successfully!',
+        'receivedData': request_data
+    })
+
 @app.route('/generate-trip', methods=['POST'])
 def generate_trip():
     try:
@@ -30,9 +45,10 @@ def generate_trip():
         budget = user_input.get('budgetInDollars', 1500)
         number_of_people = user_input.get('numberOfPeople', 4)
         schedule_granularity = user_input.get('scheduleGranularity', 4)
-        must_see_attractions = user_input.get('mustSeeAttractions', ['CNN Tower', 'Cafe'])
-        additional_info = user_input.get('additionalInfo', 'Additional information here')
-
+        must_see_attractions = user_input.get(
+            'mustSeeAttractions', ['CNN Tower', 'Cafe'])
+        additional_info = user_input.get(
+            'additionalInfo', 'Additional information here')
 
         # Define the system prompt with instructions for the model.
         system_prompt = """
@@ -67,7 +83,6 @@ def generate_trip():
             f"{schedule_granularity} hour(s). Include the following attractions: {', '.join(must_see_attractions)}. "
             f"Additional information: {additional_info}."
         )
-
 
         # Combine system, example, and user prompts.
         formatted_prompt = f"""
@@ -123,6 +138,6 @@ def generate_trip():
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
+
 if __name__ == "__main__":
     app.run(debug=True)
-
