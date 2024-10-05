@@ -1,4 +1,12 @@
-import { AppShell, Burger, Group, Skeleton, Text } from '@mantine/core';
+import {
+  AppShell,
+  Burger,
+  Center,
+  Container,
+  Group,
+  Text,
+} from '@mantine/core';
+import { Carousel } from '@mantine/carousel';
 import { useDisclosure } from '@mantine/hooks';
 
 function App() {
@@ -6,15 +14,7 @@ function App() {
 
   return (
     <>
-      <AppShell
-        header={{ height: 60 }}
-        navbar={{
-          width: 300,
-          breakpoint: 'sm',
-          collapsed: { mobile: !opened },
-        }}
-        padding="md"
-      >
+      <AppShell header={{ height: 60 }} padding="md">
         <AppShell.Header>
           <Group h="100%" px="md">
             <Burger
@@ -26,7 +26,22 @@ function App() {
             <Text size="xl">Ecowander.ai</Text>
           </Group>
         </AppShell.Header>
-        <AppShell.Main>Form</AppShell.Main>
+        <AppShell.Main>
+          <Container size="md">
+            <Carousel
+              withIndicators
+              height={800}
+              dragFree
+              slideGap="lg"
+              align="start"
+              bg={'red'}
+            >
+              <Carousel.Slide>Page 1</Carousel.Slide>
+              <Carousel.Slide>Page 2</Carousel.Slide>
+              <Carousel.Slide>Page 3</Carousel.Slide>
+            </Carousel>
+          </Container>
+        </AppShell.Main>
       </AppShell>
     </>
   );
