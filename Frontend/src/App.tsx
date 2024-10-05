@@ -16,6 +16,7 @@ import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 import axios from 'axios';
 import logo from '../images/logo.png';
+import { ResponsePage } from './pages/ResponsePage';
 
 export interface FormData {
   startLocation: string; // e.g. "Paris, France" (city, country)
@@ -43,6 +44,7 @@ function App() {
     mustSeeAttractions: [],
     additionalInfo: '',
   });
+  const [llmResponse, setLlmResponse] = useState<string | null>(null);
 
   const steps = [
     {
@@ -64,6 +66,11 @@ function App() {
       id: 4,
       content: 'Step 4',
       component: <Page3 formData={formData} setFormData={setFormData} />,
+    },
+    {
+      id: 5,
+      content: 'Step 5',
+      component: <ResponsePage llmResponse={llmResponse} />,
     },
   ];
 
@@ -93,9 +100,9 @@ function App() {
         'http://127.0.0.1:5000/generate-trip',
         formData
       );
-      console.log(response);
+      setLlmResponse(response.data.response);
     } catch (e) {
-      console.log(e.response.data);
+      console.log('Error: ', e);
     }
   };
 
