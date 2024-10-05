@@ -10,6 +10,7 @@ import {
 import LandingPage from './pages/LandingPage';
 import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
+import Page3 from './pages/Page3';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
@@ -58,6 +59,11 @@ function App() {
       id: 3,
       content: 'Step 3',
       component: <Page2 formData={formData} setFormData={setFormData} />,
+    },
+    {
+      id: 4,
+      content: 'Step 4',
+      component: <Page3 formData={formData} setFormData={setFormData} />,
     },
   ];
 
