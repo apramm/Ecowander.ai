@@ -163,7 +163,7 @@ function App() {
                     Next
                   </Button>
                 ) : currentStep === 3 ? (
-                  <Button onClick={handleSubmit}>Submit</Button>
+                  <Button color="#6E9266" onClick={handleSubmit}>Submit</Button>
                 ) : null}
               </Group>
             </Center>
