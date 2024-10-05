@@ -1,4 +1,4 @@
-import { Box, Title, Text } from '@mantine/core';
+import { Box, Title, Text, Select } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { FormData } from '../App';
 
@@ -8,6 +8,15 @@ interface DateSelectorProps {
 }
 
 const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
+  const granularityOptions = [
+    { value: '1', label: '1 hour' },
+    { value: '2', label: '2 hours' },
+    { value: '3', label: '3 hours' },
+    { value: '6', label: '6 hours' },
+    { value: '12', label: '12 hours' },
+    { value: '24', label: '1 day' },
+  ];
+
   const handleStartDateChange = (date: Date | null) => {
     setFormData(prevFormData => ({
       ...prevFormData,
@@ -22,6 +31,13 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
     }));
   };
 
+  const handleGranularityChange = (value: string | null) => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      scheduleGranularity: value ? Number(value) : 1,
+    }));
+  };
+
   return (
     <Box
       mt="md"
@@ -33,13 +49,10 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', // Soft shadow for depth
       }}
     >
-      <Title
-        order={4}
-        mb="lg"
-        style={{ textAlign: 'center', color: '#1e88e5' }}
-      >
+      <Title order={4} mb="lg" style={{ textAlign: 'center' }}>
         Select Travel Dates
       </Title>
+
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Box>
           <Text mb="xs" color="#1976d2">
@@ -52,6 +65,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
             style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered and smaller
           />
         </Box>
+
         <Box>
           <Text mb="xs" color="#1976d2">
             End Date
@@ -61,6 +75,21 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
             onChange={handleEndDateChange}
             mb="lg"
             style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered and smaller
+          />
+        </Box>
+
+        <Box>
+          <Text mb="xs" color="#1976d2">
+            Start Date
+          </Text>
+          <Select
+            label="Select Schedule Granularity"
+            placeholder="Choose granularity"
+            data={granularityOptions}
+            value={String(formData.scheduleGranularity)} // Convert number to string for Select
+            onChange={handleGranularityChange}
+            mb="md"
+            style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
           />
         </Box>
       </Box>
