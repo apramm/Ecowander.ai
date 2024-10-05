@@ -38,8 +38,8 @@ function App() {
     endLocation: ',', // e.g. "New York,United States" (city, country)
     startDate: '', // e.g. 2024-02-27
     endDate: '',
-    budgetInDollars: 0, // e.g. 3323233
-    numberOfPeople: 0,
+    budgetInDollars: 1, // e.g. 3323233
+    numberOfPeople: 1,
     scheduleGranularity: 0, // 1, 4, 8, 24 (i.e. 1 hour, 4 hours, 8 hours, 24 hours)
     mustSeeAttractions: [],
     additionalInfo: '',
