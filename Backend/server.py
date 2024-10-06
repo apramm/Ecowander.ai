@@ -17,7 +17,11 @@ model_id = "us.meta.llama3-2-90b-instruct-v1:0"
 
 app = Flask(__name__)
 # CORS(app)  # Enable CORS to allow requests from the frontend
-CORS(app, resources={r"/*": {"origins": ["http://35.163.46.241:5000", "http://localhost:5173"]}})
+CORS(app, resources={r"/*": {
+    "origins": "*",
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization"]
+}})
 
 @app.route('/', methods=['GET'])
 def hello():
