@@ -38,25 +38,41 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
           Budget and Party Size
         </Text>
       </Center>
+      <Text
+        mb={20}
+        size="1.5rem"
+        variant="gradient"
+        gradient={{ from: 'teal', to: 'green', deg: 90 }}
+        style={{ fontWeight: 600 }}
+      >
+        Budget
+      </Text>
       <TextInput
         required
-        label="Enter Budget"
         type="number"
         placeholder="Enter your budget"
         value={formData.budgetInDollars.toString()} // Convert number to string for input
         onChange={handleBudgetChange}
-        mb="md"
-        style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
+        mb={20}
+        size="lg"
       />
+      <Text
+        mb={20}
+        size="1.5rem"
+        variant="gradient"
+        gradient={{ from: 'teal', to: 'green', deg: 90 }}
+        style={{ fontWeight: 600 }}
+      >
+        Number of People
+      </Text>
       <TextInput
         required
-        label="Number of People"
         type="number"
         placeholder="Enter number of people"
         value={formData.numberOfPeople.toString()} // Convert number to string for input
         onChange={handleNumberOfPeopleChange}
         mb="md"
-        style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
+        size="lg"
       />
     </Container>
   );
