@@ -97,7 +97,8 @@ function App() {
     handleNext();
     try {
       const response = await axios.post(
-        'http://127.0.0.1:5000/generate-trip',
+        // 'http://127.0.0.1:5000/generate-trip',
+         'http://35.163.46.241:5000/generate-trip',
         formData
       );
       setLlmResponse(response.data.response);
