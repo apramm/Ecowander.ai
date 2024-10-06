@@ -8,7 +8,7 @@ interface ResponsePageProps {
 
 export const ResponsePage: React.FC<ResponsePageProps> = ({ llmResponse }) => {
   return (
-    <Container size="md">
+    <Container size="md" h="70vh" style={{ overflow: 'auto' }}>
       {llmResponse ? (
         <MarkdownRenderer markdownString={llmResponse}></MarkdownRenderer>
       ) : (

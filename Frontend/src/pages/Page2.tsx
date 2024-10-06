@@ -26,7 +26,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
   };
 
   return (
-    <Container size="md">
+    <Container size="md" h="70vh" style={{ overflow: 'auto' }}>
       <Center>
         <Text
           mb={20}
