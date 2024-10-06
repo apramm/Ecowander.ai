@@ -88,8 +88,8 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
           <Button
             onClick={handleAddLocation}
             size="lg"
-            variant="gradient"
-            gradient={{ from: 'teal', to: 'green', deg: 90 }}
+            variant="outline"
+            color="cyan"
           >
             Add Location
           </Button>
