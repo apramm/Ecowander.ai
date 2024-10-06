@@ -130,7 +130,7 @@ function App() {
             />
           </Group>
         </AppShell.Header>
-        <AppShell.Main>
+        <AppShell.Main mt={30}>
           <motion.div
             key={currentStep}
             initial="hidden"
