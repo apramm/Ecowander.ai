@@ -67,11 +67,19 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
       </Center>
 
       <Stack>
+        <Text
+          size="1.5rem"
+          variant="gradient"
+          gradient={{ from: 'teal', to: 'green', deg: 90 }}
+          style={{ fontWeight: 600 }}
+        >
+          Must See Places
+        </Text>
         <TextInput
-          placeholder="Enter a must-see location"
+          placeholder="Jiro Sushi"
           value={location}
           onChange={e => setLocation(e.currentTarget.value)}
-          style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
+          size="lg"
         />
         <Button
           color="#6E9266"
@@ -104,12 +112,20 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
           ))}
         </ul>
 
+        <Text
+          size="1.5rem"
+          variant="gradient"
+          gradient={{ from: 'teal', to: 'green', deg: 90 }}
+          style={{ fontWeight: 600 }}
+        >
+          Additional Comments
+        </Text>
         <Textarea
-          placeholder="Enter any additional comments"
+          placeholder="Prefer train over bus."
           value={formData.additionalInfo || ''} // Ensure value is defined
           onChange={handleCommentsChange} // Use the updated handler
-          style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
           rows={5}
+          size="lg"
         />
       </Stack>
     </Container>

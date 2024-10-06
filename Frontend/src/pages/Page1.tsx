@@ -54,37 +54,63 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
 
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Box>
+          <Text
+            mb={20}
+            size="1.5rem"
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'green', deg: 90 }}
+            style={{ fontWeight: 600 }}
+          >
+            Start Date
+          </Text>
           <DateInput
             required
-            label="Choose Start Date"
+            placeholder="2024-04-02"
             value={formData.startDate ? new Date(formData.startDate) : null}
             onChange={handleStartDateChange}
             mb="md"
-            style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered and smaller
+            size="lg"
           />
         </Box>
 
         <Box>
+          <Text
+            mb={20}
+            size="1.5rem"
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'green', deg: 90 }}
+            style={{ fontWeight: 600 }}
+          >
+            End Date
+          </Text>
           <DateInput
             required
-            label="Choose End Date"
+            placeholder="2024-07-01"
             value={formData.endDate ? new Date(formData.endDate) : null}
             onChange={handleEndDateChange}
             mb="lg"
-            style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered and smaller
+            size="lg"
           />
         </Box>
 
         <Box>
+          <Text
+            mb={20}
+            size="1.5rem"
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'green', deg: 90 }}
+            style={{ fontWeight: 600 }}
+          >
+            Schedule Granularity
+          </Text>
           <Select
             required
-            label="Select Schedule Granularity"
-            placeholder="Choose granularity"
+            placeholder="1 hour"
             data={granularityOptions}
             value={String(formData.scheduleGranularity)} // Convert number to string for Select
             onChange={handleGranularityChange}
             mb="md"
-            style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
+            size="lg"
           />
         </Box>
       </Box>
