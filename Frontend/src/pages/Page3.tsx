@@ -6,6 +6,8 @@ import {
   Container,
   Textarea,
   Center,
+  Flex,
+  List,
 } from '@mantine/core';
 import { FormData } from '../App';
 import { useState } from 'react';
@@ -75,42 +77,49 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
         >
           Must See Places
         </Text>
-        <TextInput
-          placeholder="Jiro Sushi"
-          value={location}
-          onChange={e => setLocation(e.currentTarget.value)}
-          size="lg"
-        />
-        <Button
-          color="#6E9266"
-          onClick={handleAddLocation}
-          style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }}
-        >
-          Add Location
-        </Button>
+        <Flex gap={20}>
+          <TextInput
+            placeholder="Jiro Sushi"
+            value={location}
+            onChange={e => setLocation(e.currentTarget.value)}
+            size="lg"
+            flex={1}
+          />
+          <Button
+            onClick={handleAddLocation}
+            size="lg"
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'green', deg: 90 }}
+          >
+            Add Location
+          </Button>
+        </Flex>
 
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
-          {locations.map((loc, index) => (
-            <li
-              key={index}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              {loc}
-              <Button
-                color="red"
-                variant="outline"
-                onClick={() => handleRemoveLocation(index)}
-                style={{ marginLeft: '10px' }}
+        <Center>
+          <List>
+            {locations.map((loc, index) => (
+              <List.Item
+                key={index}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: 30,
+                }}
               >
-                Remove
-              </Button>
-            </li>
-          ))}
-        </ul>
+                <Text display={'inline-block'}>{loc}</Text>
+                <Button
+                  color="red"
+                  variant="outline"
+                  onClick={() => handleRemoveLocation(index)}
+                  ml={50}
+                >
+                  Remove
+                </Button>
+              </List.Item>
+            ))}
+          </List>
+        </Center>
 
         <Text
           size="1.5rem"
