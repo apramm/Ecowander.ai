@@ -97,8 +97,7 @@ function App() {
     handleNext();
     try {
       const response = await axios.post(
-        // 'http://127.0.0.1:5000/generate-trip',
-         'http://35.163.46.241:5000/generate-trip',
+        'http://35.163.46.241:5000/generate-trip',
         formData
       );
       setLlmResponse(response.data.response);
@@ -150,6 +149,8 @@ function App() {
                   variant="default"
                   onClick={handleBack}
                   disabled={currentStep === 0}
+                  size="lg"
+                  w={200}
                 >
                   Back
                 </Button>
@@ -159,11 +160,23 @@ function App() {
                 <Button
                   onClick={handleNext}
                   disabled={currentStep === steps.length - 1}
+                  size="lg"
+                  w={200}
+                  variant="gradient"
+                  gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
                 >
                   Next
                 </Button>
               ) : currentStep === 3 ? (
-                <Button onClick={handleSubmit}>Submit</Button>
+                <Button
+                  onClick={handleSubmit}
+                  size="lg"
+                  variant="gradient"
+                  w={200}
+                  gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
+                >
+                  Submit
+                </Button>
               ) : null}
             </Group>
           </Center>
