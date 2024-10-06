@@ -1,4 +1,12 @@
-import { AppShell, Burger, Button, Center, Group, Image } from '@mantine/core';
+import {
+  AppShell,
+  Burger,
+  Button,
+  Center,
+  Group,
+  Image,
+  Text,
+} from '@mantine/core';
 import LandingPage from './pages/LandingPage';
 import Page1 from './pages/Page1';
 import Page2 from './pages/Page2';
@@ -7,7 +15,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDisclosure } from '@mantine/hooks';
 import axios from 'axios';
-import logo from '../images/logo.png';
+// import logo from '../images/logo.png';
+import seeding from '../images/seeding.svg';
 import { ResponsePage } from './pages/ResponsePage';
 
 export interface FormData {
@@ -118,16 +127,23 @@ function App() {
               size="sm"
             />
             <Image
-              src={logo}
+              src={seeding}
               alt="Ecowander Logo"
-              width={400}
-              height={200}
+              width={40}
+              height={40}
               style={{
                 objectFit: 'contain',
-                marginTop: '-4rem',
-                marginLeft: '2rem',
+                color: 'cyan',
               }}
             />
+            <Text
+              size="2rem"
+              variant="gradient"
+              gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
+              style={{ fontWeight: 300 }}
+            >
+              ecowander.ai
+            </Text>
           </Group>
         </AppShell.Header>
         <AppShell.Main mt={30}>
