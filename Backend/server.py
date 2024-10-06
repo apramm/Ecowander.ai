@@ -181,8 +181,10 @@ def generate_trip():
         return jsonify({"response": markdown_content})
 
     except ClientError as e:
+        print("clienterror")
         return jsonify({"error": f"ClientError: Unable to invoke model {model_id}. Reason: {e}"}), 500
     except Exception as e:
+        print(f"An error occurred: {str(e)}")
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
 
