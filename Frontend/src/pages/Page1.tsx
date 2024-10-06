@@ -101,7 +101,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
             gradient={{ from: 'teal', to: 'green', deg: 90 }}
             style={{ fontWeight: 600 }}
           >
-            Schedule Granularity
+            Granularity of Schedule
           </Text>
           <Select
             required
