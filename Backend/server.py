@@ -16,7 +16,8 @@ client = boto3.client(
 model_id = "us.meta.llama3-2-90b-instruct-v1:0"
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS to allow requests from the frontend
+# CORS(app)  # Enable CORS to allow requests from the frontend
+CORS(app, resources={r"/*": {"origins": ["http://35.163.46.241:5173", "http://localhost:5173"]}})
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -182,4 +183,4 @@ def generate_trip():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
