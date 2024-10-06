@@ -1,4 +1,4 @@
-import { Title, TextInput, Container } from '@mantine/core';
+import { Text, TextInput, Container, Center } from '@mantine/core';
 import { FormData } from '../App';
 
 interface Page2Props {
@@ -27,13 +27,17 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
 
   return (
     <Container size="md">
-      <Title
-        order={4}
-        mb="lg"
-        style={{ textAlign: 'center', color: '#6E9266' }}
-      >
-        Logistics
-      </Title>
+      <Center>
+        <Text
+          mb={20}
+          size="2rem"
+          variant="gradient"
+          gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
+          style={{ fontWeight: 900 }}
+        >
+          Budget and Party Size
+        </Text>
+      </Center>
       <TextInput
         required
         label="Enter Budget"

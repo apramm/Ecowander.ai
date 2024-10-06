@@ -1,10 +1,11 @@
 import {
-  Title,
+  Text,
   TextInput,
   Button,
   Stack,
   Container,
   Textarea,
+  Center,
 } from '@mantine/core';
 import { FormData } from '../App';
 import { useState } from 'react';
@@ -53,13 +54,17 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
 
   return (
     <Container size="md">
-      <Title
-        order={4}
-        mb="lg"
-        style={{ textAlign: 'center', color: '#6E9266' }}
-      >
-        Must-See Locations and Comments
-      </Title>
+      <Center>
+        <Text
+          mb={20}
+          size="2rem"
+          variant="gradient"
+          gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
+          style={{ fontWeight: 900 }}
+        >
+          Additional Information
+        </Text>
+      </Center>
 
       <Stack>
         <TextInput
