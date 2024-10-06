@@ -1,4 +1,4 @@
-import { Box, Title, Text, Select } from '@mantine/core';
+import { Box, Title, Select, Container } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { FormData } from '../App';
 
@@ -39,25 +39,13 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
   };
 
   return (
-    <Box
-      mt="md"
-      p="xl"
-      style={{
-        border: '1px solid #eef6ef',
-        borderRadius: '8px',
-        backgroundColor: '#eef6ef',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', // Soft shadow for depth
-      }}
-    >
+    <Container size="md">
       <Title order={4} mb="lg" style={{ textAlign: 'center' }}>
         Select Travel Dates
       </Title>
 
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Box>
-          <Text mb="xs" color="#6E9266">
-            Start Date
-          </Text>
           <DateInput
             required
             label="Choose Start Date"
@@ -69,9 +57,6 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         </Box>
 
         <Box>
-          <Text mb="xs" color="#6E9266">
-            End Date
-          </Text>
           <DateInput
             required
             label="Choose End Date"
@@ -83,9 +68,6 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
         </Box>
 
         <Box>
-          <Text mb="xs" color="#6E9266">
-            Start Date
-          </Text>
           <Select
             required
             label="Select Schedule Granularity"
@@ -98,7 +80,7 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
           />
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 };
 

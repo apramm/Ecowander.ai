@@ -1,4 +1,11 @@
-import { Box, Title, Text, TextInput, Button, Stack } from '@mantine/core';
+import {
+  Title,
+  TextInput,
+  Button,
+  Stack,
+  Container,
+  Textarea,
+} from '@mantine/core';
 import { FormData } from '../App';
 import { useState } from 'react';
 
@@ -34,7 +41,9 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
     }));
   };
 
-  const handleCommentsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCommentsChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const value = event.currentTarget.value;
     setFormData(prevFormData => ({
       ...prevFormData,
@@ -43,16 +52,7 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
   };
 
   return (
-    <Box
-      mt="md"
-      p="xl"
-      style={{
-        border: '1px solid #eef6ef',
-        borderRadius: '8px',
-        backgroundColor: '#eef6ef',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', // Soft shadow for depth
-      }}
-    >
+    <Container size="md">
       <Title
         order={4}
         mb="lg"
@@ -62,9 +62,6 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
       </Title>
 
       <Stack>
-        <Text mb="xs" c="#6E9266">
-          Must-See Locations
-        </Text>
         <TextInput
           placeholder="Enter a must-see location"
           value={location}
@@ -79,9 +76,6 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
           Add Location
         </Button>
 
-        <Text mb="xs" c="#6E9266">
-          Current Locations:
-        </Text>
         <ul style={{ listStyleType: 'none', padding: 0 }}>
           {locations.map((loc, index) => (
             <li
@@ -105,17 +99,15 @@ const Page3: React.FC<Page3Props> = ({ formData, setFormData }) => {
           ))}
         </ul>
 
-        <Text mb="xs" c="#6E9266">
-          Additional Comments
-        </Text>
-        <TextInput
+        <Textarea
           placeholder="Enter any additional comments"
           value={formData.additionalInfo || ''} // Ensure value is defined
           onChange={handleCommentsChange} // Use the updated handler
           style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
+          rows={5}
         />
       </Stack>
-    </Box>
+    </Container>
   );
 };
 

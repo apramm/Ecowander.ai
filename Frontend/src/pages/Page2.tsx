@@ -1,4 +1,4 @@
-import { Box, Title, Text, TextInput } from '@mantine/core';
+import { Title, TextInput, Container } from '@mantine/core';
 import { FormData } from '../App';
 
 interface Page2Props {
@@ -26,16 +26,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
   };
 
   return (
-    <Box
-      mt="md"
-      p="xl"
-      style={{
-        border: '1px solid #eef6ef',
-        borderRadius: '8px',
-        backgroundColor: '#eef6ef',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', // Soft shadow for depth
-      }}
-    >
+    <Container size="md">
       <Title
         order={4}
         mb="lg"
@@ -43,9 +34,6 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
       >
         Logistics
       </Title>
-      <Text mb="xs" color="#6E9266">
-        Budget (in dollars)
-      </Text>
       <TextInput
         required
         label="Enter Budget"
@@ -56,12 +44,9 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         mb="md"
         style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
       />
-      <Text mb="xs" color="#6E9266">
-        Number of People
-      </Text>
       <TextInput
         required
-        label="Party Size"
+        label="Number of People"
         type="number"
         placeholder="Enter number of people"
         value={formData.numberOfPeople.toString()} // Convert number to string for input
@@ -69,7 +54,7 @@ const Page2: React.FC<Page2Props> = ({ formData, setFormData }) => {
         mb="md"
         style={{ width: '100%', maxWidth: '250px', margin: '0 auto' }} // Centered
       />
-    </Box>
+    </Container>
   );
 };
 

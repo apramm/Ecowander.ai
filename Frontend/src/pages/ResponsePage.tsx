@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import { Skeleton } from '@mantine/core';
+import { Container, Skeleton } from '@mantine/core';
 import { TypeAnimation } from 'react-type-animation';
 
 interface ResponsePageProps {
@@ -8,7 +8,7 @@ interface ResponsePageProps {
 
 export const ResponsePage: React.FC<ResponsePageProps> = ({ llmResponse }) => {
   return (
-    <>
+    <Container size="md">
       {llmResponse ? (
         <MarkdownRenderer markdownString={llmResponse}></MarkdownRenderer>
       ) : (
@@ -40,7 +40,7 @@ export const ResponsePage: React.FC<ResponsePageProps> = ({ llmResponse }) => {
           <Skeleton height={50} mt={20} radius="xl" />
         </>
       )}
-    </>
+    </Container>
   );
 };
 
