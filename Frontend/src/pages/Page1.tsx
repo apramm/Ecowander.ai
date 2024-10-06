@@ -1,4 +1,4 @@
-import { Box, Title, Select, Container } from '@mantine/core';
+import { Box, Text, Select, Container, Center } from '@mantine/core';
 import { DateInput } from '@mantine/dates';
 import { FormData } from '../App';
 
@@ -40,9 +40,17 @@ const Page1: React.FC<DateSelectorProps> = ({ formData, setFormData }) => {
 
   return (
     <Container size="md">
-      <Title order={4} mb="lg" style={{ textAlign: 'center' }}>
-        Select Travel Dates
-      </Title>
+      <Center>
+        <Text
+          mb={20}
+          size="2rem"
+          variant="gradient"
+          gradient={{ from: 'lime', to: 'cyan', deg: 90 }}
+          style={{ fontWeight: 900 }}
+        >
+          When Is Your Trip?
+        </Text>
+      </Center>
 
       <Box style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <Box>
