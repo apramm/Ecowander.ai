@@ -109,6 +109,7 @@ function App() {
         'http://35.163.46.241:5000/generate-trip',
         formData
       );
+      console.log(response.data.response);
       setLlmResponse(response.data.response);
     } catch (e) {
       console.log('Error: ', e);
