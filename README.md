@@ -18,15 +18,17 @@ npm run dev
 ### Backend
 Go to Backend folder. Then get the AWS CLI credentials, and copy and paste them as a command.
 To run the python file server.py:
+
+### For Linux
 ```
-# On Linux:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python server.py
 ```
+
+### For Windows
 ```
-# On Windows:
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
